@@ -4,13 +4,11 @@
 
 const app = document.getElementById('app');
 const brandLink = document.getElementById('brandLink');
-const footerBrand = document.getElementById('footerBrand');
 const searchInput = document.getElementById('searchInput');
 
 // ---- Apply site name everywhere ----
 document.title = SITE.name;
 brandLink.textContent = SITE.name;
-footerBrand.textContent = `${SITE.name} — ${new Date().getFullYear()}`;
 
 // ---- Helpers ----
 function escapeHtml(str){
@@ -35,13 +33,13 @@ function seriesVideos(seriesName){
     .sort((a,b) => (a.part||0) - (b.part||0));
 }
 
-function randomOthers(excludeId, count){
+function randomOthers(excludeId){
   const pool = VIDEOS.filter(v => v.id !== excludeId);
   for(let i = pool.length - 1; i > 0; i--){
     const j = Math.floor(Math.random() * (i+1));
     [pool[i], pool[j]] = [pool[j], pool[i]];
   }
-  return pool.slice(0, count);
+  return pool;
 }
 
 function embedFor(url){
@@ -118,7 +116,7 @@ function renderWatch(id){
     return;
   }
 
-  const others = randomOthers(v.id, 8);
+  const others = randomOthers(v.id);
 
   app.innerHTML = `
     <div class="watch-page">
