@@ -49,7 +49,7 @@ function embedFor(url){
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen></iframe>`;
   }
-  return `<video src="${escapeHtml(url)}" controls autoplay playsinline webkit-playsinline></video>`;
+  return `<video src="${escapeHtml(url)}" controls autoplay playsinline webkit-playsinline controlsList="nofullscreen noremoteplayback" disablePictureInPicture></video>`;
 }
 
 // ---- Card renderer ----
