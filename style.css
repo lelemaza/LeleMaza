@@ -224,6 +224,20 @@ button{ font-family: inherit; cursor:pointer; }
   display:block;
 }
 
+.player-wrap.fake-fullscreen{
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+body.lock-scroll{
+  overflow: hidden;
+}
+
 .video-title{
   font-family: 'Bebas Neue', sans-serif;
   font-size: 32px;
