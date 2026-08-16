@@ -35,7 +35,7 @@ const VIDEOS = [
     title: "Besharam Episode 1",
     thumbnail: "https://hotmaza.net/wp-content/uploads/2026/03/Besharam-Episode-1-by-Ullu.webp",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+      "https://cdn.azmaal.com/ULLU/Besharam/Besharam%20Episode%201.mp4",
     series: "Besharam (ULLU)",
     part: 1,
   },
