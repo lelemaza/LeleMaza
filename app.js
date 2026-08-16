@@ -139,6 +139,7 @@ function renderWatch(id){
   document.getElementById('seriesBtn').addEventListener('click', () => {
     window.location.hash = `#/series/${encodeURIComponent(slugify(v.series))}`;
   });
+   setupFakeFullscreen();
 }
 
 function renderSeries(slug){
@@ -163,8 +164,44 @@ function renderSeries(slug){
   attachCardHandlers();
 }
 
+// New Block
+
+// ---- Fake fullscreen on phone landscape (avoids native OS fullscreen hint) ----
+let _fsMediaQuery = null;
+let _fsHandler = null;
+
+function teardownFakeFullscreen(){
+  if(_fsMediaQuery && _fsHandler){
+    _fsMediaQuery.removeEventListener('change', _fsHandler);
+  }
+  _fsMediaQuery = null;
+  _fsHandler = null;
+  document.body.classList.remove('lock-scroll');
+}
+
+function setupFakeFullscreen(){
+  const playerWrap = document.querySelector('.player-wrap');
+  if(!playerWrap) return;
+
+  _fsMediaQuery = window.matchMedia('(orientation: landscape) and (max-height: 500px)');
+
+  _fsHandler = (e) => {
+    if(e.matches){
+      playerWrap.classList.add('fake-fullscreen');
+      document.body.classList.add('lock-scroll');
+    } else {
+      playerWrap.classList.remove('fake-fullscreen');
+      document.body.classList.remove('lock-scroll');
+    }
+  };
+
+  _fsMediaQuery.addEventListener('change', _fsHandler);
+  _fsHandler(_fsMediaQuery);
+}
+
 // ---- Router ----
 function router(){
+  teardownFakeFullscreen();
   const hash = window.location.hash || '#/';
   const [, path, param] = hash.split('/');
 
