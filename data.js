@@ -1,0 +1,86 @@
+/* =====================================================================
+   DATA.JS  —  Yahi file edit karo naya video/series publish karne ke liye
+   Ise kabhi bhi index.html, style.css, ya app.js touch karne ki zaroorat
+   nahi padegi. Bas neeche VIDEOS array me entry add/remove/edit karo.
+   ===================================================================== */
+
+// ---- Website ka naam (navbar me yahi dikhega) ----
+const SITE = {
+  name: "LeleMaza",
+};
+
+/*
+  Har video ke liye ek object banao is format me:
+
+  {
+    id: "unique-id",          // HAR video ke liye alag / unique honi chahiye (spaces mat use karo)
+    title: "Video ka title",  // jo video page pe aur card pe dikhega
+    thumbnail: "https://...", // thumbnail image ka direct link
+    videoUrl: "https://...",  // video ka link — YouTube link YA direct .mp4 link, dono chalenge
+    series: "Series ka naam", // is video ka "main name" — isi naam se sare parts group honge
+    part: 1                   // is series ka konsa part hai (1, 2, 3...) — order ke liye
+  }
+
+  - Agar video kisi series ka part nahi hai (standalone video hai), to bhi
+    "series" me uska naam de do aur "part: 1" rakho — wo apne aap uski
+    khud ki "series" ban jayegi.
+  - Naya video add karna ho: neeche array me { } ka ek naya block copy-paste
+    karke apni details daal do, comma laga ke.
+  - Video hatana ho: uska pura { ... } block delete kar do.
+*/
+
+const VIDEOS = [
+  {
+    id: "nightfall-1",
+    title: "Nightfall — Part 1: The Signal",
+    thumbnail: "https://picsum.photos/seed/nightfall1/500/281",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    series: "Nightfall",
+    part: 1,
+  },
+  {
+    id: "nightfall-2",
+    title: "Nightfall — Part 2: Static",
+    thumbnail: "https://picsum.photos/seed/nightfall2/500/281",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    series: "Nightfall",
+    part: 2,
+  },
+  {
+    id: "nightfall-3",
+    title: "Nightfall — Part 3: Frequency",
+    thumbnail: "https://picsum.photos/seed/nightfall3/500/281",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    series: "Nightfall",
+    part: 3,
+  },
+  {
+    id: "campus-diaries-1",
+    title: "Campus Diaries — Ep 1: First Day",
+    thumbnail: "https://picsum.photos/seed/campus1/500/281",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+    series: "Campus Diaries",
+    part: 1,
+  },
+  {
+    id: "campus-diaries-2",
+    title: "Campus Diaries — Ep 2: The Assignment",
+    thumbnail: "https://picsum.photos/seed/campus2/500/281",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+    series: "Campus Diaries",
+    part: 2,
+  },
+  {
+    id: "standalone-shortfilm",
+    title: "Midnight Ahmedabad",
+    thumbnail: "https://picsum.photos/seed/midnight/500/281",
+    videoUrl: "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+    series: "Midnight Ahmedabad",
+    part: 1,
+  },
+];
