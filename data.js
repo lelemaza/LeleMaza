@@ -49,12 +49,12 @@ const VIDEOS = [
     part: 2,
   },
   {
-    id: "nightfall-3",
-    title: "Nightfall — Part 3: Frequency",
-    thumbnail: "https://picsum.photos/seed/nightfall3/500/281",
+    id: "besharam2",
+    title: "Besharam Episode 3",
+    thumbnail: "https://hotmaza.net/wp-content/uploads/2026/03/Besharam-Episode-3-by-Ullu.webp",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-    series: "Nightfall",
+      "https://cdn.azmaal.com/ULLU/Besharam/Besharam%20Episode%203.mp4",
+    series: "Besharam (ULLU)",
     part: 3,
   },
   {
