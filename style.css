@@ -304,6 +304,7 @@ button{ font-family: inherit; cursor:pointer; }
   #app{ padding: 24px 4% 50px; }
   .video-title{ font-size: 26px; }
   .grid{ grid-template-columns: repeat(1, 1fr); gap: 14px; }
+  .more-videos .grid{ grid-template-columns: repeat(1, 1fr); }   /* ← ye naya line add karo */
 }
 
 /* Reduced motion */
