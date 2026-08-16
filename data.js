@@ -31,21 +31,21 @@ const SITE = {
 
 const VIDEOS = [
   {
-    id: "nightfall-1",
-    title: "Nightfall — Part 1: The Signal",
-    thumbnail: "https://picsum.photos/seed/nightfall1/500/281",
+    id: "besharam1",
+    title: "Besharam Episode 1",
+    thumbnail: "https://hotmaza.net/wp-content/uploads/2026/03/Besharam-Episode-1-by-Ullu.webp",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-    series: "Nightfall",
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    series: "Besharam (ULLU)",
     part: 1,
   },
   {
-    id: "nightfall-2",
-    title: "Nightfall — Part 2: Static",
-    thumbnail: "https://picsum.photos/seed/nightfall2/500/281",
+    id: "besharam2",
+    title: "Besharam Episode 2",
+    thumbnail: "https://hotmaza.net/wp-content/uploads/2026/03/Besharam-Episode-1-by-Ullu.webp",
     videoUrl:
       "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-    series: "Nightfall",
+    series: "Besharam (ULLU)",
     part: 2,
   },
   {
