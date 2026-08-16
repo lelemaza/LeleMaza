@@ -120,16 +120,7 @@ function renderWatch(id){
 
   app.innerHTML = `
     <div class="watch-page">
-      <div class="player-wrap">
-        ${embedFor(v.videoUrl)}
-        <div class="custom-controls" id="customControls">
-          <button id="playPauseBtn" class="ctrl-btn">▶</button>
-          <input type="range" id="seekBar" class="seek-bar" value="0" min="0" max="100" step="0.1">
-          <span id="timeLabel" class="time-label">0:00 / 0:00</span>
-          <button id="muteBtn" class="ctrl-btn">🔊</button>
-          <button id="fsBtn" class="ctrl-btn">⤢</button>
-        </div>
-      </div>
+      <div class="player-wrap">${embedFor(v.videoUrl)}</div>
       <h1 class="video-title">${escapeHtml(v.title)}</h1>
       <button class="series-pill" id="seriesBtn" data-series="${escapeHtml(v.series)}">
         Series: <b>${escapeHtml(v.series)}</b> →
@@ -148,9 +139,7 @@ function renderWatch(id){
   document.getElementById('seriesBtn').addEventListener('click', () => {
     window.location.hash = `#/series/${encodeURIComponent(slugify(v.series))}`;
   });
-
-  setupFakeFullscreen();
-  setupCustomControls();
+   setupFakeFullscreen();
 }
 
 function renderSeries(slug){
@@ -174,6 +163,8 @@ function renderSeries(slug){
   `;
   attachCardHandlers();
 }
+
+// New Block
 
 // ---- Fake fullscreen on phone landscape (avoids native OS fullscreen hint) ----
 let _fsMediaQuery = null;
@@ -206,52 +197,6 @@ function setupFakeFullscreen(){
 
   _fsMediaQuery.addEventListener('change', _fsHandler);
   _fsHandler(_fsMediaQuery);
-}
-
-// ---- Custom video controls (play/pause, seek, mute, fullscreen toggle) ----
-function setupCustomControls(){
-  const video = document.getElementById('mainVideo');
-  if(!video) return; // YouTube iframe case — skip
-
-  const playPauseBtn = document.getElementById('playPauseBtn');
-  const seekBar = document.getElementById('seekBar');
-  const timeLabel = document.getElementById('timeLabel');
-  const muteBtn = document.getElementById('muteBtn');
-  const fsBtn = document.getElementById('fsBtn');
-  const playerWrap = document.querySelector('.player-wrap');
-
-  function fmt(t){
-    if(isNaN(t)) return '0:00';
-    const m = Math.floor(t/60);
-    const s = Math.floor(t%60).toString().padStart(2,'0');
-    return `${m}:${s}`;
-  }
-
-  video.addEventListener('click', () => video.paused ? video.play() : video.pause());
-  playPauseBtn.addEventListener('click', () => video.paused ? video.play() : video.pause());
-  video.addEventListener('play', () => playPauseBtn.textContent = '⏸');
-  video.addEventListener('pause', () => playPauseBtn.textContent = '▶');
-
-  video.addEventListener('timeupdate', () => {
-    if(video.duration){
-      seekBar.value = (video.currentTime / video.duration) * 100;
-      timeLabel.textContent = `${fmt(video.currentTime)} / ${fmt(video.duration)}`;
-    }
-  });
-
-  seekBar.addEventListener('input', () => {
-    if(video.duration) video.currentTime = (seekBar.value / 100) * video.duration;
-  });
-
-  muteBtn.addEventListener('click', () => {
-    video.muted = !video.muted;
-    muteBtn.textContent = video.muted ? '🔇' : '🔊';
-  });
-
-  fsBtn.addEventListener('click', () => {
-    playerWrap.classList.toggle('fake-fullscreen');
-    document.body.classList.toggle('lock-scroll');
-  });
 }
 
 // ---- Router ----
