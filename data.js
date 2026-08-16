@@ -58,13 +58,13 @@ const VIDEOS = [
     part: 3,
   },
   {
-    id: "campus-diaries-1",
-    title: "Campus Diaries — Ep 1: First Day",
-    thumbnail: "https://picsum.photos/seed/campus1/500/281",
+    id: "besharam2",
+    title: "Besharam Episode 3",
+    thumbnail: "https://hotmaza.net/wp-content/uploads/2026/03/Besharam-Episode-4-by-Ullu.webp",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-    series: "Campus Diaries",
-    part: 1,
+      "https://cdn.azmaal.com/ULLU/Besharam/Besharam%20Episode%204.mp4",
+    series: "Besharam (ULLU)",
+    part: 4,
   },
   {
     id: "campus-diaries-2",
