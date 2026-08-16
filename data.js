@@ -49,7 +49,7 @@ const VIDEOS = [
     part: 2,
   },
   {
-    id: "besharam2",
+    id: "besharam3",
     title: "Besharam Episode 3",
     thumbnail: "https://hotmaza.net/wp-content/uploads/2026/03/Besharam-Episode-3-by-Ullu.webp",
     videoUrl:
@@ -58,8 +58,8 @@ const VIDEOS = [
     part: 3,
   },
   {
-    id: "besharam2",
-    title: "Besharam Episode 3",
+    id: "besharam4",
+    title: "Besharam Episode 4",
     thumbnail: "https://hotmaza.net/wp-content/uploads/2026/03/Besharam-Episode-4-by-Ullu.webp",
     videoUrl:
       "https://cdn.azmaal.com/ULLU/Besharam/Besharam%20Episode%204.mp4",
@@ -67,13 +67,13 @@ const VIDEOS = [
     part: 4,
   },
   {
-    id: "campus-diaries-2",
-    title: "Campus Diaries — Ep 2: The Assignment",
-    thumbnail: "https://picsum.photos/seed/campus2/500/281",
+    id: "besharam5",
+    title: "Besharam Episode 5",
+    thumbnail: "https://hotmaza.net/wp-content/uploads/2026/03/Besharam-Episode-5-by-Ullu-1.webp",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-    series: "Campus Diaries",
-    part: 2,
+      "https://cdn.azmaal.com/ULLU/Besharam/Besharam%20Episode%205.mp4",
+    series: "Besharam (ULLU)",
+    part: 5,
   },
   {
     id: "standalone-shortfilm",
