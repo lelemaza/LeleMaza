@@ -76,11 +76,11 @@ const VIDEOS = [
     part: 5,
   },
   {
-    id: "standalone-shortfilm",
-    title: "Midnight Ahmedabad",
-    thumbnail: "https://picsum.photos/seed/midnight/500/281",
-    videoUrl: "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
-    series: "Midnight Ahmedabad",
-    part: 1,
+    id: "besharam6",
+    title: "Besharam Episode 6",
+    thumbnail: "https://hotmaza.net/wp-content/uploads/2026/03/Besharam-Episode-6-by-Ullu.webp",
+    videoUrl: "https://cdn.azmaal.com/ULLU/Besharam/Besharam%20Episode%206.mp4",
+    series: "Besharam (ULLU)",
+    part: 6,
   },
 ];
