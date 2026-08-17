@@ -30,6 +30,24 @@ const SITE = {
 */
 
 const VIDEOS = [
+  //  {
+  //   id: "",
+  //   title: "",
+  //   thumbnail: "",
+  //   videoUrl:
+  //     "",
+  //   series: "",
+  //   part: 1,
+  // },
+   {
+    id: "lsd1",
+    title: "LSD Episode 1",
+    thumbnail: "https://hotmaza.net/wp-content/uploads/2026/03/LSD-Episode-1-by-Primeshots-2022.webp",
+    videoUrl:
+      "https://cdn.azmaal.com/PrimeShots/LSD/LSD%20Episode%201.mp4",
+    series: "LSD",
+    part: 1,
+  },
   {
     id: "besharam1",
     title: "Besharam Episode 1",
