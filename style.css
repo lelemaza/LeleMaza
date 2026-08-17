@@ -234,102 +234,8 @@ button{ font-family: inherit; cursor:pointer; }
   box-shadow: none;
 }
 
-/* Used when the fullscreen BUTTON is pressed while the phone is still
-   in portrait — rotates the player itself to landscape via CSS,
-   instead of waiting for the device to physically rotate. */
-.player-wrap.rotated-landscape{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vh;
-  height: 100vw;
-  transform-origin: top left;
-  transform: rotate(90deg) translateY(-100%);
-  z-index: 9999;
-  border-radius: 0;
-  box-shadow: none;
-}
-
 body.lock-scroll{
   overflow: hidden;
-}
-
-/* When the video takes over the screen (fullscreen button or device
-   rotate), hide everything else — only the video should be visible. */
-body.video-fullscreen-active .navbar{
-  display: none !important;
-}
-
-body.video-fullscreen-active{
-  background: #000;
-}
-
-/* ---- Custom video player controls ---- */
-.video-controls{
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 6px 14px 12px;
-  background: linear-gradient(0deg, rgba(0,0,0,0.85), rgba(0,0,0,0.35) 65%, transparent);
-  opacity: 1;
-  transition: opacity .25s ease;
-}
-
-.player-wrap.controls-hidden .video-controls{
-  opacity: 0;
-  pointer-events: none;
-}
-
-.progress-row{ margin-bottom: 4px; }
-
-.seek-bar{
-  width: 100%;
-  height: 4px;
-  accent-color: var(--gold);
-  cursor: pointer;
-}
-
-.controls-row{
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.ctrl-btn{
-  background: none;
-  border: none;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px;
-  border-radius: 8px;
-  transition: background .15s ease;
-  flex-shrink: 0;
-}
-
-.ctrl-btn:hover{ background: rgba(255,255,255,0.15); }
-
-.ctrl-btn svg{ width: 20px; height: 20px; display: block; }
-
-.time-label{
-  color: #fff;
-  font-size: 12px;
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-
-.spacer{ flex: 1; }
-
-.volume-bar{
-  width: 70px;
-  accent-color: var(--gold);
-  cursor: pointer;
-}
-
-@media (max-width: 500px){
-  .volume-bar{ display: none; } /* keep the mobile bar clean — mute toggle only */
 }
 
 .video-title{
@@ -412,7 +318,7 @@ body.video-fullscreen-active{
   #app{ padding: 24px 4% 50px; }
   .video-title{ font-size: 26px; }
   .grid{ grid-template-columns: repeat(1, 1fr); gap: 14px; }
-  .more-videos .grid{ grid-template-columns: repeat(1, 1fr); }
+  .more-videos .grid{ grid-template-columns: repeat(1, 1fr); }   /* ← ye naya line add karo */
 }
 
 /* Reduced motion */
