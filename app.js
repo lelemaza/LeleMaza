@@ -210,7 +210,7 @@ function teardownFakeFullscreen(){
   }
   _fsMediaQuery = null;
   _fsHandler = null;
-  document.body.classList.remove('lock-scroll');
+  document.body.classList.remove('lock-scroll', 'video-fullscreen-active');
   const playerWrap = document.querySelector('.player-wrap');
   if(playerWrap) playerWrap.classList.remove('fake-fullscreen', 'rotated-landscape');
 }
@@ -225,11 +225,11 @@ function setupFakeFullscreen(){
     const fsBtn = document.getElementById('fsBtn');
     if(e.matches){
       playerWrap.classList.add('fake-fullscreen');
-      document.body.classList.add('lock-scroll');
+      document.body.classList.add('lock-scroll', 'video-fullscreen-active');
       if(fsBtn) fsBtn.innerHTML = ICONS.fsExit;
     } else {
       playerWrap.classList.remove('fake-fullscreen');
-      document.body.classList.remove('lock-scroll');
+      document.body.classList.remove('lock-scroll', 'video-fullscreen-active');
       if(fsBtn) fsBtn.innerHTML = ICONS.fsEnter;
     }
   };
@@ -264,7 +264,6 @@ function setupCustomControls(){
 
   function togglePlay(){ video.paused ? video.play() : video.pause(); }
 
-  video.addEventListener('click', togglePlay);
   playPauseBtn.addEventListener('click', togglePlay);
   video.addEventListener('play', () => { playPauseBtn.innerHTML = ICONS.pause; });
   video.addEventListener('pause', () => { playPauseBtn.innerHTML = ICONS.play; });
@@ -301,12 +300,12 @@ function setupCustomControls(){
 
     if(isActive){
       playerWrap.classList.remove('fake-fullscreen', 'rotated-landscape');
-      document.body.classList.remove('lock-scroll');
+      document.body.classList.remove('lock-scroll', 'video-fullscreen-active');
       fsBtn.innerHTML = ICONS.fsEnter;
     } else {
       const isPortrait = window.matchMedia('(orientation: portrait)').matches;
       playerWrap.classList.add(isPortrait ? 'rotated-landscape' : 'fake-fullscreen');
-      document.body.classList.add('lock-scroll');
+      document.body.classList.add('lock-scroll', 'video-fullscreen-active');
       fsBtn.innerHTML = ICONS.fsExit;
     }
   });
