@@ -211,6 +211,8 @@ function teardownFakeFullscreen(){
   _fsMediaQuery = null;
   _fsHandler = null;
   document.body.classList.remove('lock-scroll');
+  const playerWrap = document.querySelector('.player-wrap');
+  if(playerWrap) playerWrap.classList.remove('fake-fullscreen', 'rotated-landscape');
 }
 
 function setupFakeFullscreen(){
@@ -295,9 +297,18 @@ function setupCustomControls(){
   });
 
   fsBtn.addEventListener('click', () => {
-    const isFs = playerWrap.classList.toggle('fake-fullscreen');
-    document.body.classList.toggle('lock-scroll', isFs);
-    fsBtn.innerHTML = isFs ? ICONS.fsExit : ICONS.fsEnter;
+    const isActive = playerWrap.classList.contains('fake-fullscreen') || playerWrap.classList.contains('rotated-landscape');
+
+    if(isActive){
+      playerWrap.classList.remove('fake-fullscreen', 'rotated-landscape');
+      document.body.classList.remove('lock-scroll');
+      fsBtn.innerHTML = ICONS.fsEnter;
+    } else {
+      const isPortrait = window.matchMedia('(orientation: portrait)').matches;
+      playerWrap.classList.add(isPortrait ? 'rotated-landscape' : 'fake-fullscreen');
+      document.body.classList.add('lock-scroll');
+      fsBtn.innerHTML = ICONS.fsExit;
+    }
   });
 
   // Auto-hide controls a few seconds after activity, while playing
