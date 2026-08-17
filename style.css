@@ -234,6 +234,22 @@ button{ font-family: inherit; cursor:pointer; }
   box-shadow: none;
 }
 
+/* Used when the fullscreen BUTTON is pressed while the phone is still
+   in portrait — rotates the player itself to landscape via CSS,
+   instead of waiting for the device to physically rotate. */
+.player-wrap.rotated-landscape{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vh;
+  height: 100vw;
+  transform-origin: top left;
+  transform: rotate(90deg) translateY(-100%);
+  z-index: 9999;
+  border-radius: 0;
+  box-shadow: none;
+}
+
 body.lock-scroll{
   overflow: hidden;
 }
