@@ -49,6 +49,33 @@ const VIDEOS = [
     part: 1,
   },
   {
+    id: "lsd2",
+    title: "LSD Episode 2",
+    thumbnail: "https://hotmaza.net/wp-content/uploads/2026/03/LSD-Episode-2-by-Primeshots-2022.webp",
+    videoUrl:
+      "https://cdn.azmaal.com/PrimeShots/LSD/LSD%20Episode%202.mp4",
+    series: "LSD",
+    part: 2,
+  },
+   {
+    id: "lsd3",
+    title: "LSD Episode 3",
+    thumbnail: "https://hotmaza.net/wp-content/uploads/2026/03/LSD-Episode-3-by-Primeshots-2022.webp",
+    videoUrl:
+      "https://cdn.azmaal.com/PrimeShots/LSD/LSD%20Episode%203.mp4",
+    series: "LSD",
+    part: 3,
+  },
+   {
+    id: "lsd4",
+    title: "LSD Episode 4",
+    thumbnail: "https://hotmaza.net/wp-content/uploads/2026/03/LSD-Episode-4-by-Primeshots-2022.webp",
+    videoUrl:
+      "https://cdn.azmaal.com/PrimeShots/LSD/LSD%20Episode%204.mp4",
+    series: "LSD",
+    part: 4,
+  },
+  {
     id: "besharam1",
     title: "Besharam Episode 1",
     thumbnail: "https://hotmaza.net/wp-content/uploads/2026/03/Besharam-Episode-1-by-Ullu.webp",
