@@ -254,6 +254,16 @@ body.lock-scroll{
   overflow: hidden;
 }
 
+/* When the video takes over the screen (fullscreen button or device
+   rotate), hide everything else — only the video should be visible. */
+body.video-fullscreen-active .navbar{
+  display: none !important;
+}
+
+body.video-fullscreen-active{
+  background: #000;
+}
+
 /* ---- Custom video player controls ---- */
 .video-controls{
   position: absolute;
