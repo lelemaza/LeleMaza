@@ -233,28 +233,19 @@ button{ font-family: inherit; cursor:pointer; }
   display:block;
 }
 
-.player-wrap.fake-fullscreen{
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 9999;
+/* Real browser fullscreen (via Fullscreen API) — also hides the phone's
+   own home/back navigation bar, which CSS positioning alone never could. */
+.player-wrap:fullscreen,
+.player-wrap.native-fullscreen{
+  width: 100%;
+  height: 100%;
   border-radius: 0;
   box-shadow: none;
 }
 
-/* Used when the fullscreen BUTTON is pressed while the phone is still
-   in portrait — rotates the player itself to landscape via CSS,
-   instead of waiting for the device to physically rotate. */
-.player-wrap.rotated-landscape{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vh;
-  height: 100vw;
-  transform-origin: top left;
-  transform: rotate(90deg) translateY(-100%);
-  z-index: 9999;
+.player-wrap:-webkit-full-screen{
+  width: 100%;
+  height: 100%;
   border-radius: 0;
   box-shadow: none;
 }
