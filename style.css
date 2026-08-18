@@ -233,148 +233,18 @@ button{ font-family: inherit; cursor:pointer; }
   display:block;
 }
 
-/* Real browser fullscreen (via Fullscreen API) — also hides the phone's
-   own home/back navigation bar, which CSS positioning alone never could. */
-.player-wrap:fullscreen,
-.player-wrap.native-fullscreen{
-  width: 100%;
-  height: 100%;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-.player-wrap:-webkit-full-screen{
-  width: 100%;
-  height: 100%;
+.player-wrap.fake-fullscreen{
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
   border-radius: 0;
   box-shadow: none;
 }
 
 body.lock-scroll{
   overflow: hidden;
-}
-
-/* When the video takes over the screen (fullscreen button or device
-   rotate), hide everything else — only the video should be visible,
-   covering the WHOLE mobile screen, not just the site's container. */
-body.video-fullscreen-active .navbar{
-  display: none !important;
-}
-
-body.video-fullscreen-active{
-  background: #000;
-}
-
-/* ---- Custom video player controls ---- */
-.video-controls{
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 6px 14px 12px;
-  background: linear-gradient(0deg, rgba(0,0,0,0.85), rgba(0,0,0,0.35) 65%, transparent);
-  opacity: 1;
-  transition: opacity .25s ease;
-  z-index: 2;
-}
-
-.player-wrap.controls-hidden .video-controls{
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Double-tap zones — left half seeks back, right half seeks forward */
-.seek-zone{
-  position: absolute;
-  top: 0;
-  bottom: 64px;
-  width: 50%;
-  z-index: 1;
-}
-
-.seek-left{ left: 0; }
-.seek-right{ right: 0; }
-
-.seek-indicator{
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: #fff;
-  font-size: 13px;
-  font-weight: 600;
-  background: rgba(0,0,0,0.6);
-  padding: 10px 16px;
-  border-radius: 999px;
-  opacity: 0;
-  pointer-events: none;
-  z-index: 3;
-}
-
-.seek-indicator-left{ left: 16%; }
-.seek-indicator-right{ right: 16%; }
-
-.seek-indicator.show{
-  animation: seekFlash .6s ease;
-}
-
-@keyframes seekFlash{
-  0%{ opacity: 0; transform: translateY(-50%) scale(.9); }
-  25%{ opacity: 1; transform: translateY(-50%) scale(1); }
-  100%{ opacity: 0; transform: translateY(-50%) scale(1); }
-}
-
-.progress-row{ margin-bottom: 4px; }
-
-.seek-bar{
-  width: 100%;
-  height: 4px;
-  accent-color: var(--gold);
-  cursor: pointer;
-}
-
-.controls-row{
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.ctrl-btn{
-  background: none;
-  border: none;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px;
-  border-radius: 8px;
-  transition: background .15s ease;
-  flex-shrink: 0;
-}
-
-.ctrl-btn:hover{ background: rgba(255,255,255,0.15); }
-
-.ctrl-btn svg{ width: 20px; height: 20px; display: block; }
-
-.time-label{
-  color: #fff;
-  font-size: 12px;
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-
-.spacer{ flex: 1; }
-
-.volume-bar{
-  width: 70px;
-  accent-color: var(--gold);
-  cursor: pointer;
-}
-
-@media (max-width: 500px){
-  .volume-bar{ display: none; } /* keep the mobile bar clean — mute toggle only */
 }
 
 .video-title{
@@ -457,7 +327,7 @@ body.video-fullscreen-active{
   #app{ padding: 24px 4% 50px; }
   .video-title{ font-size: 26px; }
   .grid{ grid-template-columns: repeat(1, 1fr); gap: 14px; }
-  .more-videos .grid{ grid-template-columns: repeat(1, 1fr); }
+  .more-videos .grid{ grid-template-columns: repeat(1, 1fr); }   /* ← ye naya line add karo */
 }
 
 /* Reduced motion */
