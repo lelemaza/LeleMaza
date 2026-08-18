@@ -1,4 +1,13 @@
 /* ================= Design tokens ================= */
+/* ================= Disable text-select/callout on clickable UI ================= */
+/* Normal text ko select/click karne par Google Search option nahi aayega */
+body {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
 :root{
   --bg: #0B0E14;
   --surface: #141922;
@@ -255,7 +264,8 @@ body.lock-scroll{
 }
 
 /* When the video takes over the screen (fullscreen button or device
-   rotate), hide everything else — only the video should be visible. */
+   rotate), hide everything else — only the video should be visible,
+   covering the WHOLE mobile screen, not just the site's container. */
 body.video-fullscreen-active .navbar{
   display: none !important;
 }
