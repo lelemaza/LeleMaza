@@ -1,4 +1,21 @@
 /* ================= Design tokens ================= */
+/* ================= Disable text-select/callout on clickable UI ================= */
+.card,
+.card *,
+.brand,
+.series-pill,
+.series-pill *,
+.back-link,
+.play-dot,
+.part-badge{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;   /* iOS long-press context menu band */
+  -webkit-tap-highlight-color: transparent;  /* mobile tap ka blue/grey highlight bhi hata do */
+}
+
 :root{
   --bg: #0B0E14;
   --surface: #141922;
