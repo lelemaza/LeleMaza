@@ -306,6 +306,28 @@ body.lock-scroll{
 
 .back-link:hover{ border-bottom-color: var(--gold); }
 
+/* ================= Disable text-select/callout on clickable UI =================
+   Fix: mobile browsers (Chrome/Safari) show a "Search Google for..." popup
+   when tapping/long-pressing plain text inside clickable elements. Disabling
+   user-select + touch-callout on these elements (and their inner text) stops
+   that browser behavior. #searchInput and any future readable/copyable text
+   (e.g. descriptions) are intentionally left out. */
+.card,
+.card *,
+.brand,
+.series-pill,
+.series-pill *,
+.back-link,
+.play-dot,
+.part-badge{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* ================= Responsive ================= */
 @media (max-width: 900px){
   .grid{ grid-template-columns: repeat(2, 1fr); }
