@@ -1,19 +1,11 @@
 /* ================= Design tokens ================= */
 /* ================= Disable text-select/callout on clickable UI ================= */
-.card,
-.card *,
-.brand,
-.series-pill,
-.series-pill *,
-.back-link,
-.play-dot,
-.part-badge{
+/* Normal text ko select/click karne par Google Search option nahi aayega */
+body {
+  user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;
-  -webkit-touch-callout: none;   /* iOS long-press context menu band */
-  -webkit-tap-highlight-color: transparent;  /* mobile tap ka blue/grey highlight bhi hata do */
 }
 
 :root{
