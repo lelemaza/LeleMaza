@@ -210,7 +210,42 @@ function renderSeries(slug){
   attachCardHandlers();
 }
 
-// ---- Fake fullscreen on phone landscape (avoids native OS fullscreen hint) ----
+// ---- Real Fullscreen API helpers (needed to actually hide the phone's
+// own home/back navigation bar — CSS positioning alone can never do that) ----
+function requestPlayerFullscreen(playerWrap, video){
+  if(playerWrap.requestFullscreen) return playerWrap.requestFullscreen();
+  if(playerWrap.webkitRequestFullscreen) return playerWrap.webkitRequestFullscreen();
+  if(video && video.webkitEnterFullscreen) return Promise.resolve(video.webkitEnterFullscreen()); // iOS Safari fallback
+  return Promise.reject(new Error('Fullscreen not supported'));
+}
+
+function exitPlayerFullscreen(){
+  if(document.exitFullscreen) return document.exitFullscreen();
+  if(document.webkitExitFullscreen) return document.webkitExitFullscreen();
+  return Promise.resolve();
+}
+
+function isInFullscreen(){
+  return !!(document.fullscreenElement || document.webkitFullscreenElement);
+}
+
+function syncFullscreenUI(){
+  const playerWrap = document.querySelector('.player-wrap');
+  const fsBtn = document.getElementById('fsBtn');
+  const active = isInFullscreen();
+  document.body.classList.toggle('video-fullscreen-active', active);
+  document.body.classList.toggle('lock-scroll', active);
+  if(playerWrap) playerWrap.classList.toggle('native-fullscreen', active);
+  if(fsBtn) fsBtn.innerHTML = active ? ICONS.fsExit : ICONS.fsEnter;
+  if(!active && screen.orientation && screen.orientation.unlock){
+    try{ screen.orientation.unlock(); }catch(e){}
+  }
+}
+
+document.addEventListener('fullscreenchange', syncFullscreenUI);
+document.addEventListener('webkitfullscreenchange', syncFullscreenUI);
+
+// ---- Auto-enter real fullscreen when the phone physically rotates ----
 let _fsMediaQuery = null;
 let _fsHandler = null;
 
@@ -220,27 +255,21 @@ function teardownFakeFullscreen(){
   }
   _fsMediaQuery = null;
   _fsHandler = null;
-  document.body.classList.remove('lock-scroll', 'video-fullscreen-active');
-  const playerWrap = document.querySelector('.player-wrap');
-  if(playerWrap) playerWrap.classList.remove('fake-fullscreen', 'rotated-landscape');
+  if(isInFullscreen()) exitPlayerFullscreen().catch(() => {});
 }
 
 function setupFakeFullscreen(){
   const playerWrap = document.querySelector('.player-wrap');
+  const video = document.getElementById('mainVideo');
   if(!playerWrap) return;
 
   _fsMediaQuery = window.matchMedia('(orientation: landscape) and (max-height: 500px)');
 
   _fsHandler = (e) => {
-    const fsBtn = document.getElementById('fsBtn');
     if(e.matches){
-      playerWrap.classList.add('fake-fullscreen');
-      document.body.classList.add('lock-scroll', 'video-fullscreen-active');
-      if(fsBtn) fsBtn.innerHTML = ICONS.fsExit;
+      if(!isInFullscreen()) requestPlayerFullscreen(playerWrap, video).catch(() => {});
     } else {
-      playerWrap.classList.remove('fake-fullscreen');
-      document.body.classList.remove('lock-scroll', 'video-fullscreen-active');
-      if(fsBtn) fsBtn.innerHTML = ICONS.fsEnter;
+      if(isInFullscreen()) exitPlayerFullscreen().catch(() => {});
     }
   };
 
@@ -263,8 +292,7 @@ function setupCustomControls(){
 
   playPauseBtn.innerHTML = ICONS.play;
   muteBtn.innerHTML = ICONS.volHigh;
-  fsBtn.innerHTML = playerWrap.classList.contains('fake-fullscreen') || playerWrap.classList.contains('rotated-landscape')
-    ? ICONS.fsExit : ICONS.fsEnter;
+  fsBtn.innerHTML = isInFullscreen() ? ICONS.fsExit : ICONS.fsEnter;
 
   function fmt(t){
     if(isNaN(t)) return '0:00';
@@ -309,19 +337,17 @@ function setupCustomControls(){
     muteBtn.innerHTML = video.muted ? ICONS.volMute : ICONS.volHigh;
   });
 
-  // ---- Fullscreen button: covers the ENTIRE mobile screen, not just the site ----
+  // ---- Fullscreen button: real Fullscreen API — hides the phone's own
+  // home/back navigation bar too, and locks orientation to landscape ----
   fsBtn.addEventListener('click', () => {
-    const isActive = playerWrap.classList.contains('fake-fullscreen') || playerWrap.classList.contains('rotated-landscape');
-
-    if(isActive){
-      playerWrap.classList.remove('fake-fullscreen', 'rotated-landscape');
-      document.body.classList.remove('lock-scroll', 'video-fullscreen-active');
-      fsBtn.innerHTML = ICONS.fsEnter;
+    if(isInFullscreen()){
+      exitPlayerFullscreen().catch(() => {});
     } else {
-      const isPortrait = window.matchMedia('(orientation: portrait)').matches;
-      playerWrap.classList.add(isPortrait ? 'rotated-landscape' : 'fake-fullscreen');
-      document.body.classList.add('lock-scroll', 'video-fullscreen-active');
-      fsBtn.innerHTML = ICONS.fsExit;
+      requestPlayerFullscreen(playerWrap, video).then(() => {
+        if(screen.orientation && screen.orientation.lock){
+          screen.orientation.lock('landscape').catch(() => {});
+        }
+      }).catch(() => {});
     }
   });
 
@@ -369,15 +395,6 @@ function setupCustomControls(){
   video.addEventListener('pause', () => { clearTimeout(hideTimer); playerWrap.classList.remove('controls-hidden'); });
   showControls();
 }
-
-// Safety net: if the browser auto-triggers its own native fullscreen on a
-// <video> (some Android Chrome versions do this on rotate), exit it right
-// away — our CSS-based fake-fullscreen takes over instead.
-document.addEventListener('fullscreenchange', () => {
-  if(document.fullscreenElement && document.fullscreenElement.tagName === 'VIDEO'){
-    document.exitFullscreen().catch(() => {});
-  }
-});
 
 // ---- Router ----
 function router(){
