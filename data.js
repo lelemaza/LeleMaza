@@ -40,6 +40,24 @@ const VIDEOS = [
   //   part: 1,
   // },
    {
+    id: "shilajituplabdhhai1",
+    title: "Shilajit Uplabdh Hai Episode 1",
+    thumbnail: "https://hotmaza.net/wp-content/uploads/2026/03/Shilajit-Uplabdh-Hai-Episode-1-by-Primeshots-2022.webp",
+    videoUrl:
+      "https://cdn.azmaal.com/PrimeShots/Shilajit%20Uplabdh%20Hai/Shilajit%20Uplabdh%20Hai%20Episode%201.mp4",
+    series: "Shilajit Uplabdh Hai",
+    part: 1,
+   },
+   {
+    id: "shilajituplabdhhai2",
+    title: "Shilajit Uplabdh Hai Episode 2",
+    thumbnail: "https://hotmaza.net/wp-content/uploads/2026/03/Shilajit-Uplabdh-Hai-Episode-2-by-Primeshots-2022.webp",
+    videoUrl:
+      "https://cdn.azmaal.com/PrimeShots/Shilajit%20Uplabdh%20Hai/Shilajit%20Uplabdh%20Hai%20Episode%202.mp4",
+    series: "Shilajit Uplabdh Hai",
+    part: 2,
+   },
+   {
     id: "lsd1",
     title: "LSD Episode 1",
     thumbnail: "https://hotmaza.net/wp-content/uploads/2026/03/LSD-Episode-1-by-Primeshots-2022.webp",
