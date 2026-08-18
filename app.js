@@ -248,7 +248,7 @@ function setupFakeFullscreen(){
   _fsHandler(_fsMediaQuery);
 }
 
-// ---- Custom video controls (play/pause, seek, volume, fullscreen) ----
+// ---- Custom video controls (play/pause, seek, volume, fullscreen, double-tap seek) ----
 function setupCustomControls(){
   const video = document.getElementById('mainVideo');
   if(!video) return; // YouTube iframe — has its own controls, skip
@@ -263,7 +263,8 @@ function setupCustomControls(){
 
   playPauseBtn.innerHTML = ICONS.play;
   muteBtn.innerHTML = ICONS.volHigh;
-  fsBtn.innerHTML = playerWrap.classList.contains('fake-fullscreen') ? ICONS.fsExit : ICONS.fsEnter;
+  fsBtn.innerHTML = playerWrap.classList.contains('fake-fullscreen') || playerWrap.classList.contains('rotated-landscape')
+    ? ICONS.fsExit : ICONS.fsEnter;
 
   function fmt(t){
     if(isNaN(t)) return '0:00';
@@ -272,12 +273,14 @@ function setupCustomControls(){
     return `${m}:${s}`;
   }
 
+  // ---- Play / Pause — button-controlled ONLY, tapping the video does nothing ----
   function togglePlay(){ video.paused ? video.play() : video.pause(); }
 
   playPauseBtn.addEventListener('click', togglePlay);
   video.addEventListener('play', () => { playPauseBtn.innerHTML = ICONS.pause; });
   video.addEventListener('pause', () => { playPauseBtn.innerHTML = ICONS.play; });
 
+  // ---- Progress bar + time ----
   video.addEventListener('loadedmetadata', () => {
     timeLabel.textContent = `${fmt(0)} / ${fmt(video.duration)}`;
   });
@@ -293,6 +296,7 @@ function setupCustomControls(){
     if(video.duration) video.currentTime = (seekBar.value / 100) * video.duration;
   });
 
+  // ---- Volume ----
   muteBtn.addEventListener('click', () => {
     video.muted = !video.muted;
     muteBtn.innerHTML = video.muted ? ICONS.volMute : ICONS.volHigh;
@@ -305,6 +309,7 @@ function setupCustomControls(){
     muteBtn.innerHTML = video.muted ? ICONS.volMute : ICONS.volHigh;
   });
 
+  // ---- Fullscreen button: covers the ENTIRE mobile screen, not just the site ----
   fsBtn.addEventListener('click', () => {
     const isActive = playerWrap.classList.contains('fake-fullscreen') || playerWrap.classList.contains('rotated-landscape');
 
@@ -350,7 +355,7 @@ function setupCustomControls(){
   attachDoubleTapSeek(seekLeft, -10, indicatorLeft);
   attachDoubleTapSeek(seekRight, 10, indicatorRight);
 
-  // Auto-hide controls a few seconds after activity, while playing
+  // ---- Auto-hide controls a few seconds after activity, while playing ----
   let hideTimer;
   function showControls(){
     playerWrap.classList.remove('controls-hidden');
